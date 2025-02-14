@@ -6,7 +6,7 @@ The AI agent is particularly effective at performing simple tasks such as clicki
 
 
 #Demo
-# Use a Calculator on Mac
+### Use a Calculator on Mac
 [![Agent UI use Calculator](https://cdn.loom.com/sessions/thumbnails/9fe8c4740ef74b45a6e4e5eeb8338b68-0b5c1fd76d8732f4-full-play.gif)](https://www.loom.com/share/9fe8c4740ef74b45a6e4e5eeb8338b68)
 
 <p style="text-align:center;margin-top:10px;">
@@ -15,21 +15,16 @@ The AI agent is particularly effective at performing simple tasks such as clicki
   </a>
 </p>
 
-# Find top 10 HN articles on Google
+### Find top 10 HN articles on Google
 <div>
     <a href="https://www.loom.com/share/49c00eae79c4452ab1e1f4dc77fbdde7">
-      <p>python - Agent UI - 14 February 2025 - Watch Video</p>
+      <p>🔗 Click to View full Video</p>
     </a>
     <a href="https://www.loom.com/share/49c00eae79c4452ab1e1f4dc77fbdde7">
       <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/49c00eae79c4452ab1e1f4dc77fbdde7-4230dd51e1179011-full-play.gif">
     </a>
   </div>
-[![Agent UI use Calculator](https://cdn.loom.com/sessions/thumbnails/49c00eae79c4452ab1e1f4dc77fbdde7-4230dd51e1179011-full-play.gif)](https://www.loom.com/share/49c00eae79c4452ab1e1f4dc77fbdde7)
-<p style="text-align:center;margin-top:10px;">
-    <a href="https://www.loom.com/share/49c00eae79c4452ab1e1f4dc77fbdde7">
-      <img style="max-width:300px;" src="https://cdn.loom.com/sessions/thumbnails/49c00eae79c4452ab1e1f4dc77fbdde7-4230dd51e1179011-full-play.gif">
-    </a>
-</p>    
+
 
 
 # Application Setup and Usage
