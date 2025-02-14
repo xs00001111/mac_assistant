@@ -1,6 +1,12 @@
 #Demo
 
-<div style="position: relative; padding-bottom: 62.5%; height: 0;"> <iframe src="https://www.loom.com/embed/9fe8c4740ef74b45a6e4e5eeb8338b68?sid=e18c4512-164b-4c39-8529-67501bb90eb5" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"></iframe> </div>
+[![Agent UI 操作演示](https://cdn.loom.com/sessions/thumbnails/9fe8c4740ef74b45a6e4e5eeb8338b68-0b5c1fd76d8732f4-full-play.gif)](https://www.loom.com/share/9fe8c4740ef74b45a6e4e5eeb8338b68)
+
+<p style="text-align:center;margin-top:10px;">
+  <a href="https://www.loom.com/share/9fe8c4740ef74b45a6e4e5eeb8338b68" target="_blank">
+    🔗 点击这里观看完整视频（推荐全屏观看）
+  </a>
+</p>
 
 
 
