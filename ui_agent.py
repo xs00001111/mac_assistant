@@ -1,7 +1,7 @@
 import sys
 import os
 import asyncio
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QComboBox, QLineEdit, QTextEdit, QRadioButton, QButtonGroup, QGroupBox, QFormLayout
+from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QHBoxLayout, QPushButton, QLabel, QComboBox, QLineEdit, QTextEdit, QRadioButton, QButtonGroup, QGroupBox, QFormLayout, QFileDialog
 from PyQt5.QtCore import Qt
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
@@ -9,7 +9,9 @@ from pydantic import SecretStr
 from mlx_use import Agent as MlxAgent
 from browser_use import Agent as BrowserAgent
 from mlx_use.controller.service import Controller
+from browser_use.browser.browser import Browser, BrowserConfig
 from dotenv import load_dotenv, set_key
+from code_blocks.read_pdf import read_pdf
 
 # Load environment variables from .env file
 load_dotenv()
@@ -124,6 +126,14 @@ class AgentUI(QWidget):
         llm_provider = self.llm_provider.currentText()
         context = self.context_input.toPlainText()  # Get the context input
 
+        # Check if task involves PDF
+        if 'pdf' in task.lower():
+            # Open file dialog to select PDF
+            pdf_path, _ = QFileDialog.getOpenFileName(self, "Select PDF file", "", "PDF Files (*.pdf)")
+            if pdf_path:
+                pdf_content = read_pdf(pdf_path)
+                task = f"{task}\nPDF Content: {pdf_content}"
+
         # Set LLM
         try:
             llm = set_llm(llm_provider)
@@ -147,9 +157,13 @@ class AgentUI(QWidget):
     def run_browser_task(self, task, llm):
         async def run_browser_agent():
             try:
+                browser = Browser(config=BrowserConfig(
+		        chrome_instance_path='/Applications/Google Chrome.app/Contents/MacOS/Google Chrome',
+		        disable_security=True,))
                 agent = BrowserAgent(
                     task=task,
                     llm=llm,
+                    browser=browser
                 )
                 result = await agent.run()
                 self.output_area.append(f"Task completed: {result}")
