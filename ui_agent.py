@@ -41,6 +41,8 @@ class AgentUI(QWidget):
     def __init__(self):
         super().__init__()
         self.initUI()
+        self.pdf_processor = PDFProcessor()  # 初始化处理器
+        self.current_pdf_analysis = None
 
     def initUI(self):
         self.setWindowTitle('Agent UI')
@@ -121,18 +123,34 @@ class AgentUI(QWidget):
         current_visibility = self.context_group.isVisible()
         self.context_group.setVisible(not current_visibility)
 
+    async def handle_pdf_processing(self):
+        """处理PDF分析流程"""
+        self.output_area.append("\n🔄 Starting PDF analysis...")
+        QApplication.processEvents()
+
+        try:
+            if self.local_pdf_radio.isChecked():
+                pdf_path, _ = QFileDialog.getOpenFileName(
+                    self, "Select PDF file", "", "PDF Files (*.pdf)"
+                )
+                if not pdf_path:
+                    raise ValueError("No PDF file selected")
+                return self.pdf_processor.process_pdf(pdf_path)
+            else:
+                url = self.url_input.text().strip()
+                if not url.startswith(('http://', 'https://')):
+                    raise ValueError("Invalid URL format")
+                return self.pdf_processor.process_pdf(url)
+
     def run_task(self):
         task = self.task_input.text()
         llm_provider = self.llm_provider.currentText()
         context = self.context_input.toPlainText()  # Get the context input
 
-        # Check if task involves PDF
         if 'pdf' in task.lower():
-            # Open file dialog to select PDF
-            pdf_path, _ = QFileDialog.getOpenFileName(self, "Select PDF file", "", "PDF Files (*.pdf)")
-            if pdf_path:
-                pdf_content = read_pdf(pdf_path)
-                task = f"{task}\nPDF Content: {pdf_content}"
+            analysis = await self.handle_pdf_processing()
+            task = f"{task}\n[PDF Analysis]\n{analysis.summary}\nKey Points: {analysis.key_points}"
+            self.current_pdf_analysis = analysis
 
         # Set LLM
         try:
@@ -163,7 +181,8 @@ class AgentUI(QWidget):
                 agent = BrowserAgent(
                     task=task,
                     llm=llm,
-                    browser=browser
+                    browser=browser,
+                    use_vision=True,
                 )
                 result = await agent.run()
                 self.output_area.append(f"Task completed: {result}")
@@ -180,7 +199,7 @@ class AgentUI(QWidget):
                     task=task,
                     llm=llm,
                     controller=controller,
-                    use_vision=False,
+                    use_vision=True,
                     max_actions_per_step=1,
                     max_failures=5
                 )
