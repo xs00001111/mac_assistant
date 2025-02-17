@@ -5,7 +5,7 @@ This project is focused on building a macOS AI agent that leverages both local s
 The AI agent is particularly effective at performing simple tasks such as clicking buttons on the web and in applications, thanks to its strong integration with the DOM tree and OS accessibility. However, its ability to perform operations on files like Google Docs and PDFs is currently limited. Future updates will allow the AI to leverage additional tools to improve its performance in these areas.
 
 
-#Demo
+## Demo
 ### Use a Calculator on Mac
 [![Agent UI use Calculator](https://cdn.loom.com/sessions/thumbnails/9fe8c4740ef74b45a6e4e5eeb8338b68-0b5c1fd76d8732f4-full-play.gif)](https://www.loom.com/share/9fe8c4740ef74b45a6e4e5eeb8338b68)
 
@@ -25,7 +25,11 @@ The AI agent is particularly effective at performing simple tasks such as clicki
     </a>
   </div>
 
+### Future Road Map
 
+# Offer more support on documents, such as read PDF, write docs with correct format.
+# Allow Local LLM for data security
+# Allow better debugging for workflows that failed.
 
 # Application Setup and Usage
 
